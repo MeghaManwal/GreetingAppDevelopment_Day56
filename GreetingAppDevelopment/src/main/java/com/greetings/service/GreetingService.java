@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -26,21 +27,25 @@ public class GreetingService implements IGreetingService{
         return greetingRepository.save(new Greeting(counter.incrementAndGet(), message));
 	}
 	
-    //UC-5 To find Greeting Message by Id
+    
 	@Override
 	public Greeting getGreetingById(long id) {
 		return greetingRepository.findById(id).get();
 	}
 
-	//UC-6 To find All the Greeting Message
+	
 	@Override
 	public List<Greeting> getAllGreetings() {
 		List<Greeting> greetings = new ArrayList<Greeting>();
-		greetings = greetingRepository.findAll(); 
+		greetingRepository.findAll().forEach(greetings::add); 
 		return greetings;
 	}
+
 	
-	
-	
+	@Override
+	public String deleteGreetingById(long id) {
+		greetingRepository.deleteById(id);
+		return "Deleted"+ " "+"Content with id: "+id;
+	}	
 
 }

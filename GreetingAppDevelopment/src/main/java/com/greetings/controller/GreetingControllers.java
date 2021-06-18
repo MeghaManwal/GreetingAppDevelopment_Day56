@@ -1,5 +1,6 @@
 package com.greetings.controller;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +45,24 @@ public class GreetingControllers {
 	public String sayHello(@PathVariable String firstName,
 			               @RequestParam(value="lastName") String lastName) {
 		return "Hello " + firstName +" "+ lastName + " !!";
+	}
+	
+	//UC-5 To find Greeting Message by Id
+	@GetMapping("/message/{id}")
+	public Greeting getByid(@PathVariable long id) {
+		return greetingService.getGreetingById(id);	
+	}
+	
+	//UC-6 To find All the Greeting Message
+	@GetMapping("/getAll")
+	public List<Greeting> getAllContent() {
+		return greetingService.getAllGreetings();
+	}
+	
+	//UC-8 To Delete Greeting Message By Id
+	@GetMapping("/delete/{id}")
+	public String deleteByid(@PathVariable long id) {
+		return greetingService.deleteGreetingById(id);	
 	}
 	
 }
