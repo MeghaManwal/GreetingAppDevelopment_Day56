@@ -1,7 +1,10 @@
 package com.greetings.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.greetings.model.Greeting;
@@ -27,6 +30,14 @@ public class GreetingService implements IGreetingService{
 	@Override
 	public Greeting getGreetingById(long id) {
 		return greetingRepository.findById(id).get();
+	}
+
+	//UC-6 To find All the Greeting Message
+	@Override
+	public List<Greeting> getAllGreetings() {
+		List<Greeting> greetings = new ArrayList<Greeting>();
+		greetings = greetingRepository.findAll(); 
+		return greetings;
 	}
 	
 	
