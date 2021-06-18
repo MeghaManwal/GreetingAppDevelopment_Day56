@@ -45,4 +45,5 @@ public class GreetingControllers {
 			               @RequestParam(value="lastName") String lastName) {
 		return "Hello " + firstName +" "+ lastName + " !!";
 	}
+	
 }
