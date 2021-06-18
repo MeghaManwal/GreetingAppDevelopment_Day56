@@ -25,6 +25,7 @@ public class GreetingControllers {
 	@Autowired
 	private IGreetingService greetingService;
 	
+	//UC-2
 	@GetMapping(value={"","/", "/home"})
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		User user = new User();
@@ -33,6 +34,7 @@ public class GreetingControllers {
 		
 	}
 	
+	//UC-3
 	@PostMapping("/post")
 	public String sayHello(@RequestBody User user) {
 		return "Hello " + user.getFirstName() + " " + user.getLastName() + " !!";
@@ -41,6 +43,6 @@ public class GreetingControllers {
 	@PutMapping("/put/{firstName}")
 	public String sayHello(@PathVariable String firstName,
 			               @RequestParam(value="lastName") String lastName) {
-		return "Hello" + firstName +" "+ lastName + " !!";
+		return "Hello " + firstName +" "+ lastName + " !!";
 	}
 }

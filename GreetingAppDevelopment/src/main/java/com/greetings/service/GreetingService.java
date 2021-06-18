@@ -16,6 +16,7 @@ public class GreetingService implements IGreetingService{
 	@Autowired
 	public GreetingRepository greetingRepository;
 	
+	//UC-4 To save Greeting Messages in the Repository
 	@Override
 	public Greeting addGreeting(com.greetings.model.User user) {
 		String message =String.format(template,  (user.toString().isEmpty()) ? "Hello World" :user.toString());		
